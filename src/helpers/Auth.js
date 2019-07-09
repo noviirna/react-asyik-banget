@@ -33,9 +33,19 @@ const Auth = {
     });
   },
   logout() {
-    firebase.auth().signOut();
-    localStorage.clear();
-    this.isLogin = false;
+    return new Promise((resolve, reject) => {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          localStorage.clear();
+          this.isLogin = false;
+          resolve();
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
   }
 };
 

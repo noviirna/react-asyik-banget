@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Main from "./container/Main";
+import LoginPage from "./container/Login";
 import Navbar from "./components/Navbar";
 import LandingPage from "./container/LandingPage";
 import NotFound from "./container/404";
@@ -17,12 +18,17 @@ export default class App extends Component {
   };
 
   Logout = history => {
-    Auth.logout();
-    this.setState((state, props) => {
-      return { isLogin: Auth.isLogin };
-    });
-    history.push("/");
-    swal.fire("Good bye", "You are logged out", "success");
+    Auth.logout()
+      .then(() => {
+        this.setState((state, props) => {
+          return { isLogin: Auth.isLogin };
+        });
+        history.push("/");
+        swal.fire("Good bye", "You are logged out", "success");
+      })
+      .catch(err => {
+        console.log(JSON.stringify(err));
+      });
   };
 
   Login = history => {
@@ -89,12 +95,11 @@ export default class App extends Component {
               path="/list"
               component={Main}
               data={{ listAlbum, isError, fetchAlbumList }}
-              // render={props => (
-              //   <Main
-              //     {...props}
-              //     data={{ listAlbum, isError, fetchAlbumList }}
-              //   />
-              // )}
+            />
+            <Route
+              exact
+              path="/login"
+              render={props => <LoginPage {...props} data={{ Login }} />}
             />
             <Route exact path="/" component={LandingPage} />} />
             <Route component={NotFound} />
