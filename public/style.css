@@ -1,0 +1,131 @@
+html,
+body {
+  height: 100%;
+  min-height: 100%;
+}
+
+.img-thumbnail {
+  animation: spin-me infinite 20s linear;
+  width: 300px;
+  height: 300px;
+  max-width: 300px;
+  max-height: 300px;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+@keyframes spin-me {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.text-h3 {
+  max-width: 220px;
+  text-align: center;
+  max-height: 35px;
+  overflow-y: hidden;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bg-landing {
+  background-image: url("https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwallpapersdsc.net%2Fwp-content%2Fuploads%2F2016%2F10%2FMaroon-5-4K.jpg&f=1");
+  background-size: cover;
+}
+
+.tembus {
+  opacity: 0.6;
+}
+
+.flower-spinner,
+.flower-spinner * {
+  box-sizing: border-box;
+}
+
+.flower-spinner {
+  height: 70px;
+  width: 70px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.flower-spinner .dots-container {
+  height: calc(70px / 7);
+  width: calc(70px / 7);
+}
+
+.flower-spinner .smaller-dot {
+  background: white;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  animation: flower-spinner-smaller-dot-animation 2.5s 0s infinite both;
+}
+
+.flower-spinner .bigger-dot {
+  background: #2196f3;
+  height: 100%;
+  width: 100%;
+  padding: 10%;
+  border-radius: 50%;
+  animation: flower-spinner-bigger-dot-animation 2.5s 0s infinite both;
+}
+
+@keyframes flower-spinner-bigger-dot-animation {
+  0%,
+  100% {
+    box-shadow: #2196f3 0px 0px 0px, #2196f3 0px 0px 0px, #2196f3 0px 0px 0px,
+      #2196f3 0px 0px 0px, #2196f3 0px 0px 0px, #2196f3 0px 0px 0px,
+      #2196f3 0px 0px 0px, #2196f3 0px 0px 0px;
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  25%,
+  75% {
+    box-shadow: #2196f3 26px 0px 0px, #2196f3 -26px 0px 0px,
+      #2196f3 0px 26px 0px, #2196f3 0px -26px 0px, #2196f3 19px -19px 0px,
+      #2196f3 19px 19px 0px, #2196f3 -19px -19px 0px, #2196f3 -19px 19px 0px;
+  }
+
+  100% {
+    transform: rotate(360deg);
+    box-shadow: #2196f3 0px 0px 0px, #2196f3 0px 0px 0px, #2196f3 0px 0px 0px,
+      #2196f3 0px 0px 0px, #2196f3 0px 0px 0px, #2196f3 0px 0px 0px,
+      #2196f3 0px 0px 0px, #2196f3 0px 0px 0px;
+  }
+}
+
+@keyframes flower-spinner-smaller-dot-animation {
+  0%,
+  100% {
+    box-shadow: #2196f3 0px 0px 0px, #2196f3 0px 0px 0px, #2196f3 0px 0px 0px,
+      #2196f3 0px 0px 0px, #2196f3 0px 0px 0px, #2196f3 0px 0px 0px,
+      #2196f3 0px 0px 0px, #2196f3 0px 0px 0px;
+  }
+
+  25%,
+  75% {
+    box-shadow: #2196f3 14px 0px 0px, #2196f3 -14px 0px 0px,
+      #2196f3 0px 14px 0px, #2196f3 0px -14px 0px, #2196f3 10px -10px 0px,
+      #2196f3 10px 10px 0px, #2196f3 -10px -10px 0px, #2196f3 -10px 10px 0px;
+  }
+
+  100% {
+    box-shadow: #2196f3 0px 0px 0px, #2196f3 0px 0px 0px, #2196f3 0px 0px 0px,
+      #2196f3 0px 0px 0px, #2196f3 0px 0px 0px, #2196f3 0px 0px 0px,
+      #2196f3 0px 0px 0px, #2196f3 0px 0px 0px;
+  }
+}
