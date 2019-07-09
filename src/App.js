@@ -1,16 +1,49 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Main from "./container/Main/index";
+import Main from "./container/Main";
 import Navbar from "./components/Navbar";
 import LandingPage from "./container/LandingPage";
 import NotFound from "./container/404";
+import PrivateRoute from "./components/PrivateRoute";
+import Auth from "./helpers/Auth";
+import swal from "sweetalert2";
 
 export default class App extends Component {
   state = {
     listAlbum: [],
     isError: false,
-    isLogin: false
+    isLogin: true
+  };
+
+  Logout = history => {
+    Auth.logout();
+    this.setState((state, props) => {
+      return { isLogin: Auth.isLogin };
+    });
+    history.push("/");
+    swal.fire("Good bye", "You are logged out", "success");
+  };
+
+  Login = history => {
+    Auth.login()
+      .then(() => {
+        Auth.checkAuth();
+        this.setState((state, props) => {
+          return { isLogin: Auth.isLogin };
+        });
+        swal.fire("Yay", "You are logged in", "success");
+        setTimeout(() => {
+          history.push("/list");
+        }, 500);
+      })
+      .catch(err => {
+        swal.fire(
+          "Sorry",
+          "Please try again later or check your internet connection",
+          "error"
+        );
+      });
   };
 
   fetchAlbumList = () => {
@@ -37,30 +70,31 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-    if (localStorage.token) {
-      this.setState((state, props) => {
-        return { isLogin: true };
-      });
-    }
+    Auth.checkAuth();
+    this.setState((state, props) => {
+      return { isLogin: Auth.isLogin };
+    });
   }
 
   render() {
     const { listAlbum, isError, isLogin } = this.state;
-    const { fetchAlbumList } = this;
+    const { fetchAlbumList, Logout, Login } = this;
     return (
       <div className="h-100 d-flex flex-column">
         <Router>
-          <Navbar data={{ isLogin }} />
+          <Navbar data={{ isLogin, Logout, Login }} />
           <Switch>
-            <Route
+            <PrivateRoute
               exact
               path="/list"
-              render={props => (
-                <Main
-                  {...props}
-                  data={{ listAlbum, isError, fetchAlbumList }}
-                />
-              )}
+              component={Main}
+              data={{ listAlbum, isError, fetchAlbumList }}
+              // render={props => (
+              //   <Main
+              //     {...props}
+              //     data={{ listAlbum, isError, fetchAlbumList }}
+              //   />
+              // )}
             />
             <Route exact path="/" component={LandingPage} />} />
             <Route component={NotFound} />

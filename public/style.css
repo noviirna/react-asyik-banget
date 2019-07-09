@@ -4,6 +4,10 @@ body {
   min-height: 100%;
 }
 
+.bg-ulang {
+  background-color: #98c4e7;;
+}
+
 .img-thumbnail {
   animation: spin-me infinite 20s linear;
   width: 300px;
@@ -65,7 +69,7 @@ body {
 }
 
 .flower-spinner .smaller-dot {
-  background: white;
+  background: #2195f38a;
   height: 100%;
   width: 100%;
   border-radius: 50%;
