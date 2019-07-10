@@ -31,9 +31,8 @@ body {
 }
 
 .text-h3 {
-  max-width: 220px;
   text-align: center;
-  max-height: 35px;
+  max-height: 40px;
   overflow-y: hidden;
   white-space: nowrap;
   overflow: hidden;
@@ -138,4 +137,23 @@ body {
   max-width: 10rem;
   max-height: 10rem;
   border-radius: 2rem;
+}
+
+.ball {
+  /* ... */
+  animation: bounce 0.5s cubic-bezier(0.5, 0.05, 1, 0.5);
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+@keyframes bounce {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 200px, 0);
+  }
+}
+a.card.m-3.p-5 {
+  max-width: 432px;
 }

@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-export default class List extends Component {
+export default class Card extends Component {
   render() {
     let { data } = this.props;
     return (
-      <div className="card m-3 p-5">
+      <Link className="card m-3 p-5" to={"/album/" + data.idAlbum}>
         <div className="col-12 d-flex flex-column">
           <img
-            className="img img-thumbnail rounded-circle"
+            className="img img-thumbnail rounded-circle mb-2"
             src={
               data.strAlbumThumb ||
               data.strAlbumCDart ||
@@ -16,16 +16,18 @@ export default class List extends Component {
             }
             alt={data.strAlbumCDart}
           />
-          <center className="my-2">
-            <h3 className="text-h3 my-1">{data.strAlbum}</h3>
+          <center className="mt-2 text-h3">
+            <span className="text-h3 text-dark p-0 m-0">
+              {data.strAlbum}&emsp;(
+              {data.intYearReleased})
+            </span>
+            <br />
+            <small className="text-muted">
+              Click the card to see Album details
+            </small>
           </center>
-          <button className="btn btn-primary">
-            <Link className="text-white" to={"/album/" + data.idAlbum}>
-              See Details
-            </Link>
-          </button>
         </div>
-      </div>
+      </Link>
     );
   }
 }

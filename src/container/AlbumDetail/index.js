@@ -11,9 +11,7 @@ class Detail extends Component {
   }
 
   render() {
-    console.log(this.props.detailAlbum, "disini senang disana senagn");
     if (this.props.isError) {
-      console.log("1");
       return (
         <div className="container-fluid d-flex flex-column h-100 p-5 flex-grow-1 bg-ulang">
           <div className="container border d-flex flex-column justify-content-center align items-center p-5 flex-grow-1 bg-light">
@@ -58,7 +56,8 @@ class Detail extends Component {
         <div className="container-fluid d-flex flex-column flex-grow-1 p-5 bg-ulang">
           <div className="container border p-5 flex-grow-1 bg-light">
             <center>
-              <p>{JSON.stringify(this.props.detailAlbum)}</p>
+              <h1>{this.props.detailAlbum.strAlbum}</h1>
+              <p>{this.props.detailAlbum.strDescriptionEN}</p>
             </center>
           </div>
         </div>

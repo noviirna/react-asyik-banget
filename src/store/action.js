@@ -1,13 +1,15 @@
 import axios from "axios";
 
 export function checkLogin() {
+  console.log("action checkLogin()");
   if (localStorage.token && localStorage.user) {
-    console.log("udah login");
+    console.log("isLogin = true");
     return {
       type: "CHANGE_LOGIN",
       value: true
     };
   }
+  console.log("isLogin = false");
   return {
     type: "CHANGE_LOGIN",
     value: false
@@ -15,26 +17,29 @@ export function checkLogin() {
 }
 
 export function Login() {
+  console.log("action Login()");
   return {
-    type: "CHANGE_LOGIN",
-    value: true
+    type: "LOGIN"
   };
 }
 
 export function Logout() {
+  console.log("action Logout()");
+
   return {
-    type: "CHANGE_LOGIN",
-    value: false
+    type: "LOGOUT"
   };
 }
 
 export function resetAlbumListAndDetail() {
+  console.log("action resetAlbumListAndDetail()");
   return {
     type: "RESET_ALBUM_LIST_DETAIL"
   };
 }
 
 export function fetchAlbumList() {
+  console.log("action fetchAlbumList()");
   return (dispatch, state) => {
     axios({
       method: "GET",
@@ -47,14 +52,13 @@ export function fetchAlbumList() {
         dispatch(returnListAlbum(data.album));
       })
       .catch(error => {
-        dispatch({
-          type: "ERROR_HIT_API"
-        });
+        dispatch(returnErrorHitApi());
       });
   };
 }
 
 export function fetchAlbumDetail(id) {
+  console.log("action fetchAlbumDetail()");
   return (dispatch, state) => {
     axios({
       method: "GET",
@@ -64,14 +68,14 @@ export function fetchAlbumDetail(id) {
         dispatch(returnDetailAlbum(data.album[0]));
       })
       .catch(error => {
-        dispatch({
-          type: "ERROR_HIT_API"
-        });
+        dispatch(returnErrorHitApi());
       });
   };
 }
 
 export default { checkLogin, Login, Logout, fetchAlbumList };
+
+// FUNGSI RETURN UNTUK YANG ASYNC AJA DEH YAA BIAR ADA VARIASI
 
 function returnListAlbum(albumList) {
   return {
@@ -84,5 +88,11 @@ function returnDetailAlbum(data) {
   return {
     type: "CHANGE_DETAILALBUM",
     value: data
+  };
+}
+
+function returnErrorHitApi() {
+  return {
+    type: "ERROR_HIT_API"
   };
 }

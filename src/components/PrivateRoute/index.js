@@ -1,8 +1,8 @@
 import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
-import store from "../store";
+import store from "../../store";
 import { connect } from "react-redux";
-import { checkLogin } from "../store/action";
+import { checkLogin } from "../../store/action";
 
 class PrivateRoute extends Component {
   componentWillMount() {
@@ -12,8 +12,6 @@ class PrivateRoute extends Component {
   render() {
     let { component } = this.props;
     let CustomCom = component;
-    console.log(this.props.isLogin, "ini props dari store");
-    console.log(store.getState().isLogin);
     return (
       <Route
         render={props =>

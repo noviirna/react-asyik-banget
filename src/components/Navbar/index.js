@@ -10,8 +10,10 @@ class Navbar extends Component {
   }
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-        <p className="navbar-brand">Maroon 5 FanPage</p>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-info">
+        <Link to="/" className="navbar-brand">
+          Maroon 5 FanPage
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -28,6 +30,11 @@ class Navbar extends Component {
             <li className="nav-item">
               <Link className="nav-link" to="/">
                 Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/about">
+                About
               </Link>
             </li>
             <li className="nav-item">

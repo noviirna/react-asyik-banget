@@ -3,12 +3,9 @@ import React, { Component } from "react";
 import { Provider } from "react-redux";
 import store from "./store";
 
-// import { fetchAlbumList } from "./store/action";
-
-import axios from "axios";
-import Detail from "./container/Detail";
-import Main from "./container/Main";
-import LoginPage from "./container/Login";
+import AlbumDetail from "./container/AlbumDetail";
+import AlbumList from "./container/AlbumList";
+import LoginPage from "./container/LoginPage";
 import Navbar from "./components/Navbar";
 import LandingPage from "./container/LandingPage";
 import NotFound from "./container/404";
@@ -16,28 +13,6 @@ import NotFound from "./container/404";
 import PrivateRoute from "./components/PrivateRoute";
 
 export default class App extends Component {
-  fetchAlbumDetail = albumID => {
-    axios({
-      method: "GET",
-      url: `https://theaudiodb.com/api/v1/json/195003/album.php/?m=${
-        this.props.match.params.id
-      }`
-    })
-      .then(({ data }) => {
-        console.log(data.album[0]);
-        setTimeout(() => {
-          this.setState((state, props) => {
-            return { detailAlbum: data };
-          });
-        }, 2000);
-      })
-      .catch(error => {
-        this.setState((state, props) => {
-          return { isError: true };
-        });
-      });
-  };
-
   render() {
     const { isLogin } = store.getState();
     return (
@@ -50,7 +25,7 @@ export default class App extends Component {
                 exact
                 path="/album"
                 {...this.props}
-                component={Main}
+                component={AlbumList}
                 data={{
                   isLogin
                 }}
@@ -58,7 +33,7 @@ export default class App extends Component {
               <PrivateRoute
                 path="/album/:id"
                 {...this.props}
-                component={Detail}
+                component={AlbumDetail}
                 data={{
                   isLogin
                 }}

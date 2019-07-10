@@ -1,22 +1,23 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchAlbumList } from "../../store/action";
-import List from "./components/List";
+import { fetchAlbumList, resetAlbumListAndDetail } from "../../store/action";
+import Card from "./components/Card";
 
 class Main extends Component {
   componentDidMount() {
-    console.log(this.props.data);
-    this.props.fetchAlbumList();
+    this.props.resetAlbumListAndDetail();
+    setTimeout(() => {
+      this.props.fetchAlbumList();
+    }, 1000);
   }
   render() {
     const { listAlbum, isError } = this.props;
-    console.log(listAlbum);
 
     if (listAlbum.length === 0 && isError === true) {
       return (
         <div className="container-fluid d-flex flex-column h-100 flex-grow-1 p-5 bg-ulang">
           <div className="container border p-5 flex-grow-1 bg-light">
-            <center>
+            <center className="ball">
               <p>The data is currently unavailable on the API...</p>
             </center>
           </div>
@@ -53,7 +54,7 @@ class Main extends Component {
         </center>
         <div className="row d-flex align-items-center justify-content-center">
           {listAlbum.map((d, i) => (
-            <List data={d} key={i} />
+            <Card data={d} key={i} />
           ))}
         </div>
       </div>
@@ -68,7 +69,7 @@ const mapStateToProps = ({ listAlbum, isError }) => {
   };
 };
 
-const mapDispatchToProps = { fetchAlbumList };
+const mapDispatchToProps = { fetchAlbumList, resetAlbumListAndDetail };
 
 export default connect(
   mapStateToProps,

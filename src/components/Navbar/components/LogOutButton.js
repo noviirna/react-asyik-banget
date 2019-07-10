@@ -6,7 +6,7 @@ import { Login, Logout } from "../../../store/action";
 import swal from "sweetalert2";
 
 import firebase from "firebase";
-import firebaseConfig from "../../../firebaseConfig";
+import firebaseConfig from "../../../helpers/firebaseConfig";
 
 class LogOutButton extends Component {
   startLogin(history) {

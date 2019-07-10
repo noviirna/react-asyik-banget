@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
 import firebase from "firebase";
-import firebaseConfig from "../../firebaseConfig";
+import firebaseConfig from "../../helpers/firebaseConfig";
 
 import { connect } from "react-redux";
 import { Login, Logout } from "../../store/action";
@@ -37,17 +37,21 @@ class Main extends Component {
         render={({ history }) => {
           console.log(history);
           return !this.props.isLogin ? (
-            <div className="container-fluid d-flex flex-column h-100 p-5 flex-grow-1 bg-ulang">
-              <div className="container border d-flex flex-column justify-content-center align items-center p-5 flex-grow-1 bg-light">
+            <div className="container-fluid d-flex flex-column h-100 p-5 flex-grow-1 bg-ulang animated fadeIn">
+              <div className="container border d-flex flex-column justify-content-center align items-center p-5 flex-grow-1 bg-light animated zoomIn delay-1s">
                 <center>
                   <img
-                    className="img img-rounded-custom"
+                    className="img img-rounded-custom mb-2 animated pulse infinite"
                     src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Ff%2Fff%2FFacebook_logo_36x36.svg%2F480px-Facebook_logo_36x36.svg.png&f=1"
                     alt="facebook logo"
                     onClick={() => {
                       this.startLogin(history);
                     }}
                   />
+                  <h3 className="animated pulse infinite">
+                    {" "}
+                    Click to Log in using Facebook{" "}
+                  </h3>
                 </center>
               </div>
             </div>

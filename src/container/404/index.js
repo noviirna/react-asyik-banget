@@ -3,10 +3,10 @@ import React, { Component } from "react";
 export default class NotFound extends Component {
   render() {
     return (
-      <div className="d-flex flex-grow-1 align-items-center justify-content-center">
-        <div className="d-flex justify-content-center border p-5 bg-warning rounded-circle">
-          <div className="text-center text-light p-5 border rounded-circle bg-danger">
-            <div className="p-5">
+      <div className="d-flex flex-grow-1 align-items-center justify-content-center bg-ulang animated fadeIn">
+        <div className="d-flex justify-content-center p-5">
+          <div className="text-center text-light">
+            <div className="p-5 animated pulse infinite">
               <i
                 className="fa fa-exclamation-triangle my-1"
                 style={{ fontSize: "12rem" }}
