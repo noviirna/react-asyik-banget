@@ -3,10 +3,10 @@ import React, { Component } from "react";
 import { Provider } from "react-redux";
 import store from "./store";
 
-import { fetchAlbumList } from "./store/action";
+// import { fetchAlbumList } from "./store/action";
 
 import axios from "axios";
-
+import Detail from "./container/Detail";
 import Main from "./container/Main";
 import LoginPage from "./container/Login";
 import Navbar from "./components/Navbar";
@@ -37,11 +37,9 @@ export default class App extends Component {
         });
       });
   };
-  componentWillMount() {}
-  componentDidMount() {}
 
   render() {
-    const { isLogin, allAlbum, isError } = store.getState();
+    const { isLogin } = store.getState();
     return (
       <Provider store={store}>
         <div className="h-100 d-flex flex-column">
@@ -51,18 +49,16 @@ export default class App extends Component {
               <PrivateRoute
                 exact
                 path="/album"
+                {...this.props}
                 component={Main}
                 data={{
-                  fetchAlbumList,
-                  isLogin,
-                  allAlbum,
-                  isError
+                  isLogin
                 }}
               />
               <PrivateRoute
-                exact
                 path="/album/:id"
-                component={Main}
+                {...this.props}
+                component={Detail}
                 data={{
                   isLogin
                 }}

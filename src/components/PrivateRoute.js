@@ -18,12 +18,13 @@ class PrivateRoute extends Component {
       <Route
         render={props =>
           store.getState().isLogin ? (
-            <CustomCom />
+            <CustomCom {...this.props} />
           ) : (
             <Redirect
+              {...this.props}
               to={{
                 pathname: "/login",
-                state: { from: props.location }
+                state: { from: this.props.location }
               }}
             />
           )

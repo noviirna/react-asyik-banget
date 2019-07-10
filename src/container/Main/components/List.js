@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export default class List extends Component {
   render() {
@@ -18,7 +19,11 @@ export default class List extends Component {
           <center className="my-2">
             <h3 className="text-h3 my-1">{data.strAlbum}</h3>
           </center>
-          <button className="btn btn-primary">See List of Song</button>
+          <button className="btn btn-primary">
+            <Link className="text-white" to={"/album/" + data.idAlbum}>
+              See Details
+            </Link>
+          </button>
         </div>
       </div>
     );
