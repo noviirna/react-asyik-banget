@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import firebase from "firebase";
 import firebaseConfig from "../../firebaseConfig";
 
@@ -31,33 +31,35 @@ class Main extends Component {
       });
   }
   render() {
+    // console.log(this.props.location, "halaman login index");
     return (
       <Route
-        render={({ history }) => (
-          <div className="container-fluid d-flex flex-column h-100 p-5 flex-grow-1 bg-ulang">
-            <div className="container border d-flex flex-column justify-content-center align items-center p-5 flex-grow-1 bg-light">
-              <center>
-                <div className="my-5">
-                  <div className="flower-spinner">
-                    <div className="dots-container">
-                      <div className="bigger-dot">
-                        <div className="smaller-dot" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <button
-                  className="btn btn-success"
-                  onClick={() => {
-                    this.startLogin(history);
-                  }}
-                >
-                  Click Here to Login {JSON.stringify(this.props.isLogin)}
-                </button>
-              </center>
+        render={({ history }) => {
+          console.log(history);
+          return !this.props.isLogin ? (
+            <div className="container-fluid d-flex flex-column h-100 p-5 flex-grow-1 bg-ulang">
+              <div className="container border d-flex flex-column justify-content-center align items-center p-5 flex-grow-1 bg-light">
+                <center>
+                  <img
+                    className="img img-rounded-custom"
+                    src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Ff%2Fff%2FFacebook_logo_36x36.svg%2F480px-Facebook_logo_36x36.svg.png&f=1"
+                    alt="facebook logo"
+                    onClick={() => {
+                      this.startLogin(history);
+                    }}
+                  />
+                </center>
+              </div>
             </div>
-          </div>
-        )}
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/album",
+                state: history.location.state
+              }}
+            />
+          );
+        }}
       />
     );
   }

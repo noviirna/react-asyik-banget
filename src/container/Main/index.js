@@ -1,16 +1,16 @@
 import React, { Component } from "react";
-
+import { connect } from "react-redux";
+import { fetchAlbumList } from "../../store/action";
 import List from "./components/List";
 
-export default class Main extends Component {
+class Main extends Component {
   componentDidMount() {
-    const { fetchAlbumList } = this.props.data;
-    setTimeout(() => {
-      fetchAlbumList();
-    }, 2000);
+    console.log(this.props.data);
+    this.props.fetchAlbumList();
   }
   render() {
-    const { listAlbum, isError } = this.props.data;
+    const { listAlbum, isError } = this.props;
+    console.log(listAlbum);
 
     if (listAlbum.length === 0 && isError === true) {
       return (
@@ -60,3 +60,17 @@ export default class Main extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ listAlbum, isError }) => {
+  return {
+    listAlbum,
+    isError
+  };
+};
+
+const mapDispatchToProps = { fetchAlbumList };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Main);

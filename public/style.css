@@ -5,7 +5,7 @@ body {
 }
 
 .bg-ulang {
-  background-color: #98c4e7;;
+  background-color: #98c4e7;
 }
 
 .img-thumbnail {
@@ -132,4 +132,10 @@ body {
       #2196f3 0px 0px 0px, #2196f3 0px 0px 0px, #2196f3 0px 0px 0px,
       #2196f3 0px 0px 0px, #2196f3 0px 0px 0px;
   }
+}
+
+.img-rounded-custom {
+  max-width: 10rem;
+  max-height: 10rem;
+  border-radius: 2rem;
 }

@@ -1,19 +1,24 @@
 import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
 import store from "../store";
+import { connect } from "react-redux";
+import { checkLogin } from "../store/action";
 
-export default class PrivateRoute extends Component {
+class PrivateRoute extends Component {
+  componentWillMount() {
+    this.props.checkLogin();
+  }
+
   render() {
-    let { data, component } = this.props;
+    let { component } = this.props;
     let CustomCom = component;
-    console.log(data.isLogin);
-    console.log(store.getState("isLogin").isLogin);
-    // store.getState("isLogin").isLogin === true ?
+    console.log(this.props.isLogin, "ini props dari store");
+    console.log(store.getState().isLogin);
     return (
       <Route
         render={props =>
-          store.getState("isLogin").isLogin === true ? (
-            <CustomCom data={data} />
+          store.getState().isLogin ? (
+            <CustomCom />
           ) : (
             <Redirect
               to={{
@@ -27,3 +32,16 @@ export default class PrivateRoute extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ isLogin }) => {
+  return {
+    isLogin
+  };
+};
+
+const mapDispatchToProps = { checkLogin };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PrivateRoute);

@@ -3,8 +3,9 @@ import React, { Component } from "react";
 import { Provider } from "react-redux";
 import store from "./store";
 
+import { fetchAlbumList } from "./store/action";
+
 import axios from "axios";
-import Auth from "./helpers/Auth";
 
 import Main from "./container/Main";
 import LoginPage from "./container/Login";
@@ -15,39 +16,12 @@ import NotFound from "./container/404";
 import PrivateRoute from "./components/PrivateRoute";
 
 export default class App extends Component {
-  state = {
-    listAlbum: [],
-    isError: false,
-    isLogin: true,
-    detailAlbum: {}
-  };
-
-  fetchAlbumList = () => {
-    axios({
-      method: "GET",
-      url: `https://theaudiodb.com/api/v1/json/195003/searchalbum.php/?s=${encodeURI(
-        "Maroon 5"
-      )}`
-    })
-      .then(({ data }) => {
-        console.log(data.album[0]);
-        setTimeout(() => {
-          this.setState((state, props) => {
-            return { listAlbum: data.album };
-          });
-        }, 2000);
-      })
-      .catch(error => {
-        this.setState((state, props) => {
-          return { isError: true };
-        });
-      });
-  };
-
   fetchAlbumDetail = albumID => {
     axios({
       method: "GET",
-      url: `https://theaudiodb.com/api/v1/json/195003/album.php/?m=${albumID}`
+      url: `https://theaudiodb.com/api/v1/json/195003/album.php/?m=${
+        this.props.match.params.id
+      }`
     })
       .then(({ data }) => {
         console.log(data.album[0]);
@@ -63,19 +37,11 @@ export default class App extends Component {
         });
       });
   };
-
-  componentDidMount() {
-    Auth.checkAuth();
-    setTimeout(() => {
-      this.setState((state, props) => {
-        return { isLogin: Auth.isLogin };
-      });
-    }, 500);
-  }
+  componentWillMount() {}
+  componentDidMount() {}
 
   render() {
-    const { listAlbum, isError } = this.state;
-    const { fetchAlbumList } = this;
+    const { isLogin, allAlbum, isError } = store.getState();
     return (
       <Provider store={store}>
         <div className="h-100 d-flex flex-column">
@@ -87,10 +53,10 @@ export default class App extends Component {
                 path="/album"
                 component={Main}
                 data={{
-                  listAlbum,
-                  isError,
                   fetchAlbumList,
-                  isLogin: store.getState("isLogin").isLogin
+                  isLogin,
+                  allAlbum,
+                  isError
                 }}
               />
               <PrivateRoute
@@ -98,10 +64,7 @@ export default class App extends Component {
                 path="/album/:id"
                 component={Main}
                 data={{
-                  listAlbum,
-                  isError,
-                  fetchAlbumList,
-                  isLogin: store.getState("isLogin").isLogin
+                  isLogin
                 }}
               />
               <Route
