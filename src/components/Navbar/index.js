@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import LogOutButton from "./components/LogOutButton";
+import { connect } from "react-redux";
+import { checkLogin } from "../../store/action";
 
-export default class Navbar extends Component {
+class Navbar extends Component {
+  componentDidMount() {
+    this.props.checkLogin();
+  }
   render() {
-    let { isLogin, Logout, Login } = this.props.data;
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <p className="navbar-brand">Maroon 5 FanPage</p>
@@ -27,16 +31,29 @@ export default class Navbar extends Component {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/list">
+              <Link className="nav-link" to="/album">
                 Album List
               </Link>
             </li>
           </ul>
           <ul className="navbar-nav ml-auto">
-            <LogOutButton data={{ isLogin, Logout, Login }} />
+            <LogOutButton />
           </ul>
         </div>
       </nav>
     );
   }
 }
+
+const mapStateToProps = ({ isLogin }) => {
+  return {
+    isLogin
+  };
+};
+
+const mapDispatchToProps = { checkLogin };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Navbar);

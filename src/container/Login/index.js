@@ -1,10 +1,36 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
+import firebase from "firebase";
+import firebaseConfig from "../../firebaseConfig";
 
-export default class Main extends Component {
+import { connect } from "react-redux";
+import { Login, Logout } from "../../store/action";
+
+import swal from "sweetalert2";
+
+class Main extends Component {
+  startLogin(history) {
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+    firebase
+      .auth()
+      .signInWithPopup(new firebase.auth.FacebookAuthProvider())
+      .then(result => {
+        let token = result.credential.accessToken;
+        let user = result.user;
+        user = result.user.providerData[0];
+        let { email, displayName, photoURL } = user;
+        localStorage.token = token;
+        localStorage.user = JSON.stringify({ email, displayName, photoURL });
+        this.props.Login();
+        history.push("/album");
+      })
+      .catch(error => {
+        swal.fire("sorry", "error happens when try to login", "error");
+      });
+  }
   render() {
-    let { Login } = this.props.data;
-    console.log(this.props.data);
     return (
       <Route
         render={({ history }) => (
@@ -20,14 +46,13 @@ export default class Main extends Component {
                     </div>
                   </div>
                 </div>
-
                 <button
                   className="btn btn-success"
                   onClick={() => {
-                    Login(history);
+                    this.startLogin(history);
                   }}
                 >
-                  Click Here to Login
+                  Click Here to Login {JSON.stringify(this.props.isLogin)}
                 </button>
               </center>
             </div>
@@ -37,3 +62,16 @@ export default class Main extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ isLogin }) => {
+  return {
+    isLogin
+  };
+};
+
+const mapDispatchToProps = { Login, Logout };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Main);

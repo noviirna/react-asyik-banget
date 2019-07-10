@@ -9,7 +9,7 @@ export default class HomePage extends Component {
           <div className="text-center">
             <h1>Maroon 5 FanPage</h1>
             <p>Do you think you are Maroon 5's #1 Fan? We got your back.</p>
-            <Link className="btn btn-primary" to="/list">
+            <Link className="btn btn-primary" to="/album">
               Start
             </Link>
           </div>
