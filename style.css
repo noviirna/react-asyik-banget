@@ -1,0 +1,247 @@
+html,
+body {
+  height: 100%;
+  min-height: 100%;
+}
+
+.bg-ulang {
+  background-color: #98c4e7;
+}
+
+.img-thumbnail {
+  width: 300px;
+  height: 300px;
+  max-width: 300px;
+  max-height: 300px;
+}
+
+.putar-aku {
+  animation: spin-me infinite 20s linear;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+@keyframes spin-me {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.text-h3 {
+  text-align: center;
+  max-height: 40px;
+  overflow-y: hidden;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bg-landing {
+  background-image: url("https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwallpapersdsc.net%2Fwp-content%2Fuploads%2F2016%2F10%2FMaroon-5-4K.jpg&f=1");
+  background-size: cover;
+}
+
+.tembus {
+  opacity: 0.6;
+}
+
+.flower-spinner,
+.flower-spinner * {
+  box-sizing: border-box;
+}
+
+.flower-spinner {
+  height: 70px;
+  width: 70px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.flower-spinner .dots-container {
+  height: calc(70px / 7);
+  width: calc(70px / 7);
+}
+
+.flower-spinner .smaller-dot {
+  background: #2195f38a;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  animation: flower-spinner-smaller-dot-animation 2.5s 0s infinite both;
+}
+
+.flower-spinner .bigger-dot {
+  background: #2196f3;
+  height: 100%;
+  width: 100%;
+  padding: 10%;
+  border-radius: 50%;
+  animation: flower-spinner-bigger-dot-animation 2.5s 0s infinite both;
+}
+
+@keyframes flower-spinner-bigger-dot-animation {
+  0%,
+  100% {
+    box-shadow: #2196f3 0px 0px 0px, #2196f3 0px 0px 0px, #2196f3 0px 0px 0px,
+      #2196f3 0px 0px 0px, #2196f3 0px 0px 0px, #2196f3 0px 0px 0px,
+      #2196f3 0px 0px 0px, #2196f3 0px 0px 0px;
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  25%,
+  75% {
+    box-shadow: #2196f3 26px 0px 0px, #2196f3 -26px 0px 0px,
+      #2196f3 0px 26px 0px, #2196f3 0px -26px 0px, #2196f3 19px -19px 0px,
+      #2196f3 19px 19px 0px, #2196f3 -19px -19px 0px, #2196f3 -19px 19px 0px;
+  }
+
+  100% {
+    transform: rotate(360deg);
+    box-shadow: #2196f3 0px 0px 0px, #2196f3 0px 0px 0px, #2196f3 0px 0px 0px,
+      #2196f3 0px 0px 0px, #2196f3 0px 0px 0px, #2196f3 0px 0px 0px,
+      #2196f3 0px 0px 0px, #2196f3 0px 0px 0px;
+  }
+}
+
+@keyframes flower-spinner-smaller-dot-animation {
+  0%,
+  100% {
+    box-shadow: #2196f3 0px 0px 0px, #2196f3 0px 0px 0px, #2196f3 0px 0px 0px,
+      #2196f3 0px 0px 0px, #2196f3 0px 0px 0px, #2196f3 0px 0px 0px,
+      #2196f3 0px 0px 0px, #2196f3 0px 0px 0px;
+  }
+
+  25%,
+  75% {
+    box-shadow: #2196f3 14px 0px 0px, #2196f3 -14px 0px 0px,
+      #2196f3 0px 14px 0px, #2196f3 0px -14px 0px, #2196f3 10px -10px 0px,
+      #2196f3 10px 10px 0px, #2196f3 -10px -10px 0px, #2196f3 -10px 10px 0px;
+  }
+
+  100% {
+    box-shadow: #2196f3 0px 0px 0px, #2196f3 0px 0px 0px, #2196f3 0px 0px 0px,
+      #2196f3 0px 0px 0px, #2196f3 0px 0px 0px, #2196f3 0px 0px 0px,
+      #2196f3 0px 0px 0px, #2196f3 0px 0px 0px;
+  }
+}
+
+.img-rounded-custom {
+  max-width: 10rem;
+  max-height: 10rem;
+  border-radius: 2rem;
+}
+
+.ball {
+  /* ... */
+  animation: bounce 0.5s cubic-bezier(0.5, 0.05, 1, 0.5);
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+@keyframes bounce {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 200px, 0);
+  }
+}
+a.card.m-3.p-5 {
+  max-width: 432px;
+}
+
+.intersecting-circles-spinner,
+.intersecting-circles-spinner * {
+  box-sizing: border-box;
+}
+
+.intersecting-circles-spinner {
+  height: 70px;
+  width: 70px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.intersecting-circles-spinner .spinnerBlock {
+  animation: intersecting-circles-spinners-animation 1200ms linear infinite;
+  transform-origin: center;
+  display: block;
+  height: 35px;
+  width: 35px;
+}
+
+.intersecting-circles-spinner .circle {
+  display: block;
+  border: 2px solid #2196f3;
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.intersecting-circles-spinner .circle:nth-child(1) {
+  left: 0;
+  top: 0;
+}
+
+.intersecting-circles-spinner .circle:nth-child(2) {
+  left: calc(35px * -0.36);
+  top: calc(35px * 0.2);
+}
+
+.intersecting-circles-spinner .circle:nth-child(3) {
+  left: calc(35px * -0.36);
+  top: calc(35px * -0.2);
+}
+
+.intersecting-circles-spinner .circle:nth-child(4) {
+  left: 0;
+  top: calc(35px * -0.36);
+}
+
+.intersecting-circles-spinner .circle:nth-child(5) {
+  left: calc(35px * 0.36);
+  top: calc(35px * -0.2);
+}
+
+.intersecting-circles-spinner .circle:nth-child(6) {
+  left: calc(35px * 0.36);
+  top: calc(35px * 0.2);
+}
+
+.intersecting-circles-spinner .circle:nth-child(7) {
+  left: 0;
+  top: calc(35px * 0.36);
+}
+
+@keyframes intersecting-circles-spinners-animation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.grow {
+  transition: all 0.2s ease-in-out;
+}
+.grow:hover {
+  transform: scale(1.1);
+}
