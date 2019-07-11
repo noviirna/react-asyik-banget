@@ -6,31 +6,10 @@ import { Login, Logout } from "../../../store/action";
 import swal from "sweetalert2";
 
 import firebase from "firebase";
-import firebaseConfig from "../../../helpers/firebaseConfig";
 
 class LogOutButton extends Component {
   startLogin(history) {
-    if (!firebase.apps.length) {
-      firebase.initializeApp(firebaseConfig);
-    }
-    firebase
-      .auth()
-      .signInWithPopup(new firebase.auth.FacebookAuthProvider())
-      .then(result => {
-        let token = result.credential.accessToken;
-        let user = result.user;
-        user = result.user.providerData[0];
-        let { email, displayName, photoURL } = user;
-        localStorage.token = token;
-        localStorage.user = JSON.stringify({ email, displayName, photoURL });
-        this.props.Login();
-        setTimeout(() => {
-          history.push("/album");
-        }, 500);
-      })
-      .catch(error => {
-        swal.fire("sorry", "error happens when try to login", "error");
-      });
+    history.push("/login");
   }
 
   startLogout(history) {
@@ -69,7 +48,7 @@ class LogOutButton extends Component {
         <Route
           render={({ history }) => (
             <li className="nav-item" onClick={() => this.startLogin(history)}>
-              <p className="nav-link">Log In with Facebook</p>
+              <p className="nav-link">Log In</p>
             </li>
           )}
         />

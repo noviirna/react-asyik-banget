@@ -1,14 +1,14 @@
-import * as firebase from "firebase/app";
+import firebase from "firebase/app";
 import "firebase/firestore";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDsqGOkWWa0AUwW2msoNWZBeh-FH20JJt8",
-  authDomain: "kanban-noviirna-h8.firebaseapp.com",
-  databaseURL: "https://kanban-noviirna-h8.firebaseio.com",
-  projectId: "kanban-noviirna-h8",
-  storageBucket: "kanban-noviirna-h8.appspot.com",
-  messagingSenderId: "914823035086",
-  appId: "1:914823035086:web:340e36a91d0dc4e1"
+var firebaseConfig = {
+  apiKey: "AIzaSyBw2cvAts1wEd9OC3nhFJsnsvNk1wuo-Ls",
+  authDomain: "novi-irnawati-s-portofolio.firebaseapp.com",
+  databaseURL: "https://novi-irnawati-s-portofolio.firebaseio.com",
+  projectId: "novi-irnawati-s-portofolio",
+  storageBucket: "",
+  messagingSenderId: "404957284012",
+  appId: "1:404957284012:web:0c9bcc52cf3440bd"
 };
 
 // Initialize Firebase
