@@ -10815,7 +10815,6 @@ select.is-valid.form-control:focus[multiple], select.is-valid.form-control:focus
   text-transform: none;
   white-space: nowrap;
   word-wrap: normal;
-  display: block;
 }
 
 .navbar-toggler-icon::before {

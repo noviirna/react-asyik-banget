@@ -48,7 +48,6 @@ export function fetchAlbumList() {
       )}`
     })
       .then(({ data }) => {
-        console.log(data.album);
         dispatch(returnListAlbum(data.album));
       })
       .catch(error => {

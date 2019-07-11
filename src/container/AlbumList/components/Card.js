@@ -5,10 +5,10 @@ export default class Card extends Component {
   render() {
     let { data } = this.props;
     return (
-      <Link className="card m-3 p-5" to={"/album/" + data.idAlbum}>
-        <div className="col-12 d-flex flex-column">
+      <Link className="card m-3 p-5 grow animated flipInY delay-2s" to={"/album/" + data.idAlbum}>
+        <div className="col-12 d-flex flex-column animated fadeIn delay-2s">
           <img
-            className="img img-thumbnail rounded-circle mb-2"
+            className="img img-thumbnail rounded-circle mb-2 putar-aku delay-3s"
             src={
               data.strAlbumThumb ||
               data.strAlbumCDart ||
