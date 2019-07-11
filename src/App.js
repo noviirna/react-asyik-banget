@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Provider } from "react-redux";
 import store from "./store";
 
+import About from "./container/About";
 import AlbumDetail from "./container/AlbumDetail";
 import AlbumList from "./container/AlbumList";
 import LoginPage from "./container/LoginPage";
@@ -14,7 +15,6 @@ import PrivateRoute from "./components/PrivateRoute";
 
 export default class App extends Component {
   render() {
-    const { isLogin } = store.getState();
     return (
       <Provider store={store}>
         <div className="h-100 d-flex flex-column">
@@ -23,29 +23,27 @@ export default class App extends Component {
             <Switch>
               <PrivateRoute
                 exact
-                path="/album"
                 {...this.props}
+                path="/album"
                 component={AlbumList}
-                data={{
-                  isLogin
-                }}
               />
               <PrivateRoute
-                path="/album/:id"
+                exact
                 {...this.props}
+                path="/about"
+                component={About}
+              />
+              } />
+              <PrivateRoute
+                {...this.props}
+                path="/album/:id"
                 component={AlbumDetail}
-                data={{
-                  isLogin
-                }}
               />
               <Route
                 exact
                 path="/login"
                 render={props => (
-                  <LoginPage
-                    {...props}
-                    data={{ isLogin: store.getState("isLogin").isLogin }}
-                  />
+                  <LoginPage {...this.props} {...props} />
                 )}
               />
               <Route exact path="/" component={LandingPage} />} />

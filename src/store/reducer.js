@@ -4,7 +4,8 @@ const defaultValue = {
   isLogin: false,
   listAlbum: [],
   detailAlbum: [],
-  isError: false
+  isError: false,
+  detailArtist: undefined
 };
 
 export default function reducer(state = defaultValue, action) {
@@ -42,6 +43,13 @@ export default function reducer(state = defaultValue, action) {
         ...state,
         isError: false,
         detailAlbum: action.value
+      };
+    case "CHANGE_DETAILARTIST":
+      console.log("di reducer jalanin CHANGE_DETAILARTIST");
+      return {
+        ...state,
+        isError: false,
+        detailArtist: action.value
       };
     case "ERROR_HIT_API":
       console.log("di reducer jalanin ERROR_HIT_API");

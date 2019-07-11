@@ -38,6 +38,18 @@ export function resetAlbumListAndDetail() {
   };
 }
 
+export function changeArtistDetail(value) {
+  if (value) {
+    console.log("action changeArtistDetail()");
+  } else {
+    console.log("action resetArtistDetail()");
+  }
+  return {
+    type: "CHANGE_ARTIST_DETAIL",
+    value
+  };
+}
+
 export function fetchAlbumList() {
   console.log("action fetchAlbumList()");
   return (dispatch, state) => {
@@ -72,6 +84,24 @@ export function fetchAlbumDetail(id) {
   };
 }
 
+export function fetchArtistDetail() {
+  console.log("action fetchAlbumDetail()");
+  return (dispatch, state) => {
+    axios({
+      method: "GET",
+      url: `https://www.theaudiodb.com/api/v1/json/1/search.php?s=${encodeURI(
+        "Maroon 5"
+      )}`
+    })
+      .then(({ data }) => {
+        dispatch(returnDetailArtist(data.artists[0]));
+      })
+      .catch(error => {
+        dispatch(returnErrorHitApi());
+      });
+  };
+}
+
 export default { checkLogin, Login, Logout, fetchAlbumList };
 
 // FUNGSI RETURN UNTUK YANG ASYNC AJA DEH YAA BIAR ADA VARIASI
@@ -86,6 +116,13 @@ function returnListAlbum(albumList) {
 function returnDetailAlbum(data) {
   return {
     type: "CHANGE_DETAILALBUM",
+    value: data
+  };
+}
+
+function returnDetailArtist(data) {
+  return {
+    type: "CHANGE_DETAILARTIST",
     value: data
   };
 }

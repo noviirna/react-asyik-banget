@@ -31,11 +31,9 @@ class Main extends Component {
       });
   }
   render() {
-    // console.log(this.props.location, "halaman login index");
     return (
       <Route
         render={({ history }) => {
-          console.log(history);
           return !this.props.isLogin ? (
             <div className="container-fluid d-flex flex-column h-100 p-5 flex-grow-1 bg-ulang animated fadeIn">
               <div className="container border d-flex flex-column justify-content-center align items-center p-5 flex-grow-1 bg-light animated zoomIn delay-1s">
@@ -48,7 +46,12 @@ class Main extends Component {
                       this.startLogin(history);
                     }}
                   />
-                  <h3 className="animated pulse infinite">
+                  <h3
+                    className="animated pulse infinite"
+                    onClick={() => {
+                      this.startLogin(history);
+                    }}
+                  >
                     {" "}
                     Click to Log in using Facebook{" "}
                   </h3>
