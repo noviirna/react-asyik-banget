@@ -34,6 +34,7 @@ class Main extends Component {
       .then(result => {
         let token = result.credential.accessToken;
         let user = result.user;
+        console.log(user);
         user = result.user.providerData[0];
         if (option === "google") {
           user = result.user;

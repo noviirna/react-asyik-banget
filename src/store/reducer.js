@@ -17,15 +17,14 @@ export default function reducer(state = defaultValue, action) {
         isLogin: action.value
       };
     case "LOGIN":
-      console.log("di reducer jalanin LOGIN");
-      swal.fire("Hello!", "Logged in as ...", "success");
+      let name = JSON.parse(localStorage.user).displayName;
+      swal.fire("Hello!", `Logged in as ${name}`, "success");
       return {
         ...state,
         isLogin: true
       };
     case "LOGOUT":
-      console.log("di reducer jalanin LOGOUT");
-      swal.fire("Goodbye!", "Logged out from ...", "success");
+      swal.fire("Goodbye!", "Logged out", "success");
       return {
         ...state,
         isLogin: false
