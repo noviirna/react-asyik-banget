@@ -1,5 +1,6 @@
 {
   "name": "having-fun-with-react",
+  "homepage": "http://react-intro.noviirnawati.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
